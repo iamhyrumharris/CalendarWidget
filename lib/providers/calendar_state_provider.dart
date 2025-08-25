@@ -211,8 +211,17 @@ final calendarDaysProvider = Provider.family<List<DateTime?>, DateTime>((ref, mo
 final jumpToDateProvider = Provider<void Function(DateTime)>((ref) {
   return (DateTime date) {
     final visibleMonths = ref.read(visibleMonthsProvider.notifier);
+    // Load 3 months before and 3 months after the selected date (7 months total)
     final firstMonth = DateTime(date.year, date.month - 3, 1);
     final lastMonth = DateTime(date.year, date.month + 3, 1);
     visibleMonths.updateVisibleRange(firstMonth, lastMonth);
   };
 });
+
+// Loading states for pull-to-load functionality
+final isLoadingEarlierMonthsProvider = StateProvider<bool>((ref) => false);
+final isLoadingLaterMonthsProvider = StateProvider<bool>((ref) => false);
+
+// Pull progress tracking
+final pullProgressTopProvider = StateProvider<double>((ref) => 0.0);
+final pullProgressBottomProvider = StateProvider<double>((ref) => 0.0);

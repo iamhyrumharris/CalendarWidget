@@ -18,6 +18,10 @@ class CalendarConstants {
   static const Duration scrollDebounce = Duration(milliseconds: 100);
   static const Duration animationDuration = Duration(milliseconds: 300);
   
+  static const double pullToLoadThreshold = 80.0;
+  static const Duration pullToLoadAnimationDuration = Duration(milliseconds: 200);
+  static const int monthsToLoadOnPull = 3;
+  
   static const List<String> weekDays = [
     'Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'
   ];
